@@ -202,17 +202,28 @@ function SwaggerService(discoveryUrl, _apiKey, statusCallback) {
     },
 
     invocationUrl: function(formValues) {
+      // remove *
+	  var apiPath = this.path_json.replace(/\*/g, "");
+	  var idx = apiPath.indexOf("?");
+	  var nameMapping = {}; 
+	  if(idx > 0){
+	  	// parameter and placeholder names are sometimes different
+	  	var queryPart = apiPath.substr(idx + 1).replace(/{/g, '').replace(/}/g, '');
+	  	var paramPairs = queryPart.split('&');
+	  	$.each(paramPairs, function(i, v){
+	  		var pair = v.split('=');
+	  		nameMapping[pair[1]] = pair[0];
+	  	});
+	  	// cut off query part
+	  	apiPath = apiPath.substr(0, idx);
+	  }
+
       var formValuesMap = new Object();
       for (var i = 0; i < formValues.length; i++) {
         var formValue = formValues[i];
         if (formValue.value && jQuery.trim(formValue.value).length > 0)
         formValuesMap[formValue.name] = formValue.value;
       }
-	  var apiPath = this.path_json.replace(/\*/g, "");
-	  var idx = apiPath.indexOf("?");
-	  if(idx > 0){
-	  	apiPath = apiPath.substr(0, idx);
-	  }
 	  
       var urlTemplateText = apiPath.split("{").join("${");
       log("url template = " + urlTemplateText);
@@ -225,7 +236,8 @@ function SwaggerService(discoveryUrl, _apiKey, statusCallback) {
       this.parameters.each(function(param) {
         var paramValue = jQuery.trim(formValuesMap[param.name]);
         if (param.paramType == "query" && paramValue.length > 0) {
-            queryParams[param.name] = formValuesMap[param.name];
+        	var paramName = (nameMapping[param.name] || param.name);
+            queryParams[paramName] = formValuesMap[param.name];
         } else if (param.paramType == "body" && paramValue.length > 0) {
             // according to spec One and only one input object is supplied
             // queryParams = formValuesMap[param.name];
