@@ -529,7 +529,7 @@ jQuery(function($) {
             };
             var requestData;
             if(this.hasComplexType){
-            	ajaxArgs.contentType = "application/json; charset=utf-8";
+            	ajaxArgs.contentType = "application/json";
                 var serialized = form2js(form.find("td>fieldset")[0]);
                 if(this.containerParamName){
                     // json array
