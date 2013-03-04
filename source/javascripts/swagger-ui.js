@@ -575,7 +575,7 @@ jQuery(function($) {
 					// form.fileupload('enable');
             		
             	} else {
-            		ajaxArgs.contentType = "text/html; charset=utf-8";
+            		ajaxArgs.contentType = "text/html";
             		requestData = undefined;
             	}
             }
