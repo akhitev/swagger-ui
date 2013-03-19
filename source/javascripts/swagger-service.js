@@ -263,7 +263,7 @@ function SwaggerService(discoveryUrl, _apiKey, statusCallback) {
 
       // sign URL
       var urlParts = this.splitUrl(url);
-      var pathAndQuery = encodeURI(urlParts.pathAndQuery);
+      var pathAndQuery = (urlParts.pathAndQuery.indexOf('callback=') != -1 && urlParts.pathAndQuery.indexOf('%2F') != -1) ? urlParts.pathAndQuery : encodeURI(urlParts.pathAndQuery);
       var sha = new jsSHA(pathAndQuery, "ASCII");
       var hash = sha.getHMAC(key, "ASCII", "B64");
       var signature = encodeURIComponent(hash);

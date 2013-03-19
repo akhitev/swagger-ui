@@ -23,14 +23,19 @@ To hack on swagger-ui, you'll need ruby. Then..
 
 ```bash
 # Install the middleman gem:
-gem install middleman
+'gem install middleman'
+
+# Copy spec-files directory from swagger-codegen to 'swagger-ui/source' folder
 
 # Start up a development server on http://localhost:4567
-middleman
+'middleman server'
 
 # Edit the files in `/source`
 # Then when you're ready to build, run:
-middleman build
+'middleman build'
+
+# You can change host to ajax request in file swagger-service.js (line 255) for test it locally
+'url = location.protocol + "//" + location.host + window.apiBasePath + url + _queryParams;'
 ```
 
 To share your changes, [submit a pull request](https://github.com/wordnik/swagger-ui/pull/new/master).
