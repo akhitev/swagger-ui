@@ -319,8 +319,10 @@ jQuery(function($) {
           	  if(param.dataType == "stream"){
           	  	param.cleanup();
               	$("#paramTemplateFile").tmpl(param).appendTo(operationParamsContainer);
-              	  
-          	  } else if(!utils.isPrimitiveType(param.dataType)){
+          	  } else if (param.dataType == "string" && param.name == "password"){
+                  param.cleanup();
+                  $("#paramTemplatePassword").tmpl(param).appendTo(operationParamsContainer);
+              } else if(!utils.isPrimitiveType(param.dataType)){
 	          	var modelHtml = $("<div/>");
               	this.generateModelHtml(param.dataType, modelHtml, null, param.name);
               	var tmplArgs = {  modelName: param.name,
