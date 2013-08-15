@@ -19,3 +19,4 @@ version.properties
 reports/*
 .sass-cache
 .idea/
+*.zip
