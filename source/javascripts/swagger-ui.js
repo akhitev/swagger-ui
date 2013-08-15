@@ -5,7 +5,7 @@ jQuery(function($) {
 
   // window.specsBasePath = location.protocol + "//" + location.host + (location.pathname==="/" ? "" : location.pathname) + "/spec-files";
   window.specsBasePath = "spec-files";
-  window.apiBasePath = "/v2.0";
+  window.apiBasePath = "";
   
   var ApiSelectionController = Spine.Controller.create({
     proxied: ["showApi"],
@@ -489,13 +489,14 @@ jQuery(function($) {
     },
 
     submitOperationSigned: function() {
-      var privateKey = jQuery.trim($("#input_privateKey").val());
-      if(privateKey.length == 0){
-          $("#input_privateKey").wiggle();
-          return;
-      } else if (apiSelectionController.supportsLocalStorage()) {
-          localStorage.setItem("com.wordnik.swagger.ui.privateKey", privateKey);
-      }
+//      var privateKey = jQuery.trim($("#input_privateKey").val());
+      var privateKey = ""
+//      if(privateKey.length == 0){
+//          $("#input_privateKey").wiggle();
+//          return;
+//      } else if (apiSelectionController.supportsLocalStorage()) {
+//          localStorage.setItem("com.wordnik.swagger.ui.privateKey", privateKey);
+//      }
 
       var form = $(this.elementScope + "_form");
       var error_free = true;

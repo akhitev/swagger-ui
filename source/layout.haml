@@ -20,11 +20,11 @@
     #header
       %img{:alt => "Logo", :src => "stylesheets/logo.png", :style => "border: 0 none; margin-left: 15px;"}
 
-      %form#api_selector
-        .input
-          %span{:style => "font-family: GochiHandRegular; color: #FFFFFF; "}
-            Please Enter Your Private Key &ndash;&gt;
-          = text_field_tag :privateKey, :placeholder => "private_key", :id => 'input_privateKey'
+      -#%form#api_selector
+        -#.input
+        -#  %span{:style => "font-family: GochiHandRegular; color: #FFFFFF; "}
+        -#    Please Enter Your Private Key &ndash;&gt;
+        -#  = text_field_tag :privateKey, :placeholder => "private_key", :id => 'input_privateKey'
 
     = yield
 
