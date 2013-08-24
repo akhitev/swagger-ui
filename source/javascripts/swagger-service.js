@@ -269,8 +269,8 @@ function SwaggerService(discoveryUrl, _apiKey, statusCallback) {
       var signature = encodeURIComponent(hash);
 
       return url + 
-            (urlParts.query == null || urlParts.query.length == 0 ? '?' : '&') +
-            "signature=" + signature;
+            (urlParts.query == null || urlParts.query.length == 0 ? '?' : '&')
+//          + "signature=" + signature;
     },
 
     splitUrl: (function () {
