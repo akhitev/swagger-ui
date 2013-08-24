@@ -18,8 +18,9 @@
   %body
 
     #header
-      %img{:alt => "Logo", :src => "stylesheets/logo.png", :style => "border: 0 none; margin-left: 15px;"}
-
+      -#%img{:alt => "Logo", :src => "stylesheets/logo.png", :style => "border: 0 none; margin-left: 15px;"}
+      %a{:href => "" ,:class => "logo",:id => 'logo' }
+        Odesk
       -#%form#api_selector
         -#.input
         -#  %span{:style => "font-family: GochiHandRegular; color: #FFFFFF; "}
@@ -31,8 +32,4 @@
     #content_message
       Enter the base URL of the API that you wish to explore, or try
       = link_to("petstore.swagger.wordnik.com/api/resources.json", "#", :onclick => "$('#input_baseUrl').val('http://petstore.swagger.wordnik.com/api/resources.json'); apiSelectionController.showApi(); return false;")
-
-    %p#colophon{:style => 'display:none'}
-      Sexy API documentation from
-      = link_to("Swagger", "http://swagger.wordnik.com") + "."
 
